@@ -54,8 +54,23 @@ body{background:var(--cream);color:var(--ink)}
 .heritage-hero::before, .heritage-hero::after { content: none; }
 .heritage-hero .hero-emblem { margin: 0 0 12px; }
 .heritage-hero h1 { margin: 22px 0 26px; }
-.heritage-hero p { margin-bottom: 32px; }
-.heritage-hero .eyebrow { color: #e2c086; }
+.heritage-hero p {
+  max-width: 580px;
+  margin-bottom: 32px;
+  font: 400 clamp(14px, 1.5vw, 16px)/1.7 'Courier New', Courier, monospace;
+}
+.heritage-hero .eyebrow {
+  max-width: 100%;
+  padding: 8px 14px 7px;
+  border: 1px solid #b28f5e;
+  background: radial-gradient(ellipse at 34% 28%, #f7e9c8, transparent 70%),
+              repeating-linear-gradient(172deg, #c29c6414 0 1px, transparent 1px 4px),
+              #dfc799;
+  color: #3d321f;
+  font: 700 11px/1.45 'Courier New', Courier, monospace;
+  letter-spacing: .11em;
+  box-shadow: inset 0 0 6px #79532d38, 0 2px 5px #0006;
+}
 .heritage-hero .heritage-button {
   position: relative;
   gap: 20px;
