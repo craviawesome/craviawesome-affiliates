@@ -45,7 +45,6 @@ function productCard(product) {
 
   const base = document.createElement('div');
   base.className = 'product-case-base';
-  let disclosure;
   if (product.available === false) {
     const note = document.createElement('span');
     note.className = 'product-availability';
@@ -69,10 +68,10 @@ function productCard(product) {
     link.rel = 'sponsored noopener';
     link.textContent = `${label} ↗`;
     link.setAttribute('aria-label', `${label} — ${product.title} (paid link, opens in a new tab)`);
-    disclosure = document.createElement('span');
+    const disclosure = document.createElement('span');
     disclosure.className = 'product-link-disclosure';
     disclosure.textContent = '(paid link)';
-    base.append(link);
+    base.append(link, disclosure);
   } else {
     const note = document.createElement('span');
     note.className = 'product-availability';
@@ -83,7 +82,6 @@ function productCard(product) {
   const niche = document.createElement('div');
   niche.className = 'product-niche';
   niche.append(picture, base);
-  if (disclosure) niche.append(disclosure);
   card.append(title, niche);
   return card;
 }
