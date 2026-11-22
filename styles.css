@@ -38,6 +38,58 @@ body{background:var(--cream);color:var(--ink)}
 .hero h1,.section h2,.about h2,.collection strong,.product h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
 .hero h1{font-size:clamp(56px,8vw,106px);line-height:1.02}.hero h1 i{color:var(--light-gold)}
 .hero p,.hero-detail{color:var(--cream)}.hero .eyebrow,.eyebrow{color:var(--gold)}
+.heritage-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(560px, 66vw, 665px);
+  padding: 60px 24px 68px;
+  background-color: var(--deep);
+  background-image: linear-gradient(90deg, #10251920, #10251955 42%, #10251946 65%, #10251920),
+                    url('assets/heritage-hero.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.heritage-hero::before, .heritage-hero::after { content: none; }
+.heritage-hero .hero-emblem { margin: 0 0 12px; }
+.heritage-hero h1 { margin: 22px 0 26px; }
+.heritage-hero p { margin-bottom: 32px; }
+.heritage-hero .eyebrow { color: #e2c086; }
+.heritage-hero .heritage-button {
+  position: relative;
+  gap: 20px;
+  padding: 16px 34px;
+  border: 1px solid #4d391e;
+  border-radius: 3px;
+  background: repeating-linear-gradient(0deg, #fff2 0 1px, transparent 1px 3px),
+              linear-gradient(#efdaa2, #c4a05d 53%, #e2c682);
+  color: #20261e;
+  box-shadow: inset 0 0 0 2px #eed9a580, inset 0 -3px 0 #6b4a2c50, 0 5px 12px #0007;
+}
+.heritage-button::before, .heritage-button::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #eadab4, #94754a 48%, #543f24 78%);
+  box-shadow: 0 0 0 1px #68492370;
+  pointer-events: none;
+}
+.heritage-button::before { left: 10px; }
+.heritage-button::after { right: 10px; }
+.heritage-hero .heritage-button:hover { filter: brightness(1.09); }
+.heritage-hero .heritage-button:focus-visible { outline-color: var(--cream); }
+@media (max-width: 560px) {
+  .heritage-hero {
+    min-height: 520px;
+    padding: 48px 20px 56px;
+    background-position: center, 16% center;
+  }
+  .hero.heritage-hero h1 { font-size: clamp(38px, 10.8vw, 52px); }
+}
 .button{background:var(--light-gold);color:var(--blue);border:1px solid var(--gold)}.button:hover{background:var(--cream)}
 .section h2,.about h2{font-size:clamp(40px,5vw,62px);color:var(--blue)}
 .section-intro p{color:var(--green)}
