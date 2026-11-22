@@ -31,8 +31,10 @@ function cardLink(url, text, label, relationship) {
 }
 
 function productCard(product) {
+  const pin = /^https:\/\/www\.pinterest\.com\/pin\/(\d+)\/?$/i.exec(product.pinUrl);
   const card = document.createElement('article');
   card.className = 'product';
+  if (pin) card.id = `product-${pin[1]}`;
   const picture = document.createElement('div');
   picture.className = 'product-image';
   if (product.image) {
@@ -74,7 +76,7 @@ function productCard(product) {
     note.textContent = 'Coming soon';
     links.append(note);
   }
-  if (/^https:\/\/www\.pinterest\.com\/pin\/\d+\/?$/i.test(product.pinUrl)) {
+  if (pin) {
     links.append(cardLink(product.pinUrl, 'View Pin ↗', `View the Pinterest Pin for ${product.title} (opens in a new tab)`, 'noopener noreferrer'));
   }
   body.append(links);
@@ -121,3 +123,11 @@ for (const link of document.querySelectorAll('[data-category]')) {
 search.addEventListener('input', render);
 document.getElementById('year').textContent = new Date().getFullYear();
 selectCategory('All');
+
+const linkedPinId = new URLSearchParams(window.location.search).get('product');
+const linkedProduct = document.getElementById(`product-${linkedPinId}`);
+if (linkedProduct) {
+  linkedProduct.tabIndex = -1;
+  linkedProduct.focus({ preventScroll: true });
+  linkedProduct.scrollIntoView({ behavior: 'instant' });
+}

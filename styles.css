@@ -58,7 +58,7 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   text-align: center;
   font-size: 14px;
 }
-.product { display: flex; flex-direction: column; }
+.product { display: flex; flex-direction: column; scroll-margin-top: 20px; }
 .product-image { position: relative; height: auto; aspect-ratio: 4 / 5; }
 .product-image img { position: absolute; inset: 0; object-fit: contain; }
 .product-image:empty { display: none; }

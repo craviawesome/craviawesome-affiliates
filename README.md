@@ -26,6 +26,8 @@ The initial catalog uses existing Geek Gift Guide creatives and Amazon affiliate
 
 The site uses Pinterest’s [Profile Add-On](https://help.pinterest.com/en/business/article/build-a-website-widget) to display the latest Pins from `@craviawesome`. The gallery updates through Pinterest and the **Browse all Pins on Pinterest** link goes to the full profile. Maintain the catalog independently in `products.js`.
 
+To link a Pin to its matching catalog card, use `https://craviawesome-affiliates.pages.dev/?product=<pin-id>` with the numeric ID from the product’s `pinUrl`. Open that URL to confirm it lands on the intended product before saving it as the Pin’s destination.
+
 ## Publish on Cloudflare Pages
 
 The existing Cloudflare Pages Git integration deploys from `main`. The site is served from the repository root with no build step.
