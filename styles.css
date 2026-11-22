@@ -189,7 +189,7 @@ body{background:var(--cream);color:var(--ink)}
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url('assets/header-parchment.png') center / 100% 100% no-repeat;
+  background: url('assets/quest-parchment.png') center / 100% 100% no-repeat;
 }
 .collection::after {
   content: '';
