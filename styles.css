@@ -401,6 +401,40 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 .disclosure-inline{max-width:700px;margin:-12px auto 28px;text-align:center;font-size:12px;line-height:1.6;color:var(--green)}
 @media(max-width:560px){.top nav{width:100%;justify-content:space-between;gap:8px 12px}.hero h1{font-size:52px}}
 
+.catalog-sign {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  max-width: 720px;
+  min-height: clamp(220px, 38vw, 322px);
+  margin: 0 auto 32px;
+  padding: clamp(70px, 11.5vw, 110px) clamp(28px, 8vw, 88px) clamp(22px, 4vw, 36px);
+  color: #f5d687;
+  text-shadow: 0 -1px #28180d, 0 1px #694221, 0 2px 3px #190c07;
+}
+.catalog-sign::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url('assets/catalog-hanging-sign.png') center / 100% 100% no-repeat;
+  filter: drop-shadow(0 5px 5px #2e160d59);
+}
+.catalog-sign .eyebrow { color: #f0cd77; font-family: Cinzel, Georgia, serif; }
+.catalog-sign h2 {
+  margin: 8px 0 6px;
+  color: #ffdd85;
+  font: 400 clamp(27px, 5.8vw, 54px)/1.12 'Berkshire Swash', 'Cormorant Garamond', Georgia, serif;
+  text-wrap: balance;
+}
+.catalog-sign p {
+  margin: 0;
+  color: #ffe9b3;
+  font: italic 500 clamp(17px, 2.5vw, 23px)/1.15 'Cormorant Garamond', Georgia, serif;
+  text-wrap: balance;
+}
+
 .catalog-search {
   display: grid;
   gap: 8px;
