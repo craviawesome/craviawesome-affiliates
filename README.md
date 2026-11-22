@@ -8,16 +8,27 @@ Open `index.html` in a browser or run `python -m http.server 8000` from this dir
 
 ## Add affiliate products
 
-Edit `products.js`. Each entry needs `title`, `category`, `description`, `image` (optional image URL or local path), and `url` (your affiliate URL). An empty URL displays **Coming soon** rather than a broken link. Keep product images licensed/authorized for your use, including any Amazon image requirements.
+Edit `products.js`, the product log and source for the searchable catalog. Each entry has these fields.
+
+| Field | What to enter |
+| --- | --- |
+| `title` | Product name as shown in the catalog |
+| `category` | A collection name or a new category. The catalog adds filters for new categories automatically. |
+| `description` | A short description that also contributes to search results |
+| `image` | An authorized image URL or local asset path |
+| `imageAlt` | A short description of the image |
+| `url` | The original HTTPS affiliate URL. Leave blank to show **Coming soon**. |
+| `pinUrl` | The corresponding canonical `https://www.pinterest.com/pin/<id>/` URL |
+
+The initial catalog uses existing Geek Gift Guide creatives and Amazon affiliate URLs from the studio’s published Pins. Each entry was matched to its Pin and Amazon destination, with duplicate products consolidated. Review these fields together when adding or updating an entry.
+
+## Pinterest gallery
+
+The site uses Pinterest’s [Profile Add-On](https://help.pinterest.com/en/business/article/build-a-website-widget) to display the latest Pins from `@craviawesome`. The gallery updates through Pinterest and the **Browse all Pins on Pinterest** link goes to the full profile. Maintain the catalog independently in `products.js`.
 
 ## Publish on Cloudflare Pages
 
-1. Create a new GitHub repository (suggested name: `craviawesome-affiliates`) and upload these files to its root.
-2. In Cloudflare, go to **Workers & Pages** → **Create** → **Pages** → **Connect to Git** (exact menu wording may vary).
-3. Authorize the GitHub integration and select your repository.
-4. Framework preset: **None**. Build command: **leave blank**. Output directory: `/` (repository root, if requested).
-5. Choose an available project name, e.g. `craviawesome-studios`. Cloudflare will provide a `https://<project-name>.pages.dev` address. Availability is not guaranteed.
-6. Deploy. Future pushes to the production branch will trigger deployments.
+The existing Cloudflare Pages Git integration deploys from `main`. The site is served from the repository root with no build step.
 
 ## Before sharing publicly
 

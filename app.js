@@ -1,27 +1,114 @@
 const products = window.STUDIO_PRODUCTS || [];
 const grid = document.getElementById('products');
-const buttons = [...document.querySelectorAll('[data-filter]')];
-function render(category = 'All') {
-  grid.replaceChildren();
-  const visible = products.filter(p => category === 'All' || p.category === category);
-  if (!visible.length) { const msg = document.createElement('p'); msg.className = 'empty'; msg.textContent = 'New finds are coming soon. Check back for fresh discoveries!'; grid.append(msg); return; }
-  for (const p of visible) {
-    const card = document.createElement('article'); card.className = 'product';
-    const picture = document.createElement('div'); picture.className = 'product-image';
-    if (p.image) { const img = document.createElement('img'); img.src = p.image; img.alt = p.title; img.loading = 'lazy'; picture.append(img); }
-    else { picture.textContent = p.emoji || '✦'; picture.setAttribute('aria-hidden', 'true'); }
-    const body = document.createElement('div'); body.className = 'product-body';
-    const categoryEl = document.createElement('div'); categoryEl.className = 'product-category'; categoryEl.textContent = p.category;
-    const title = document.createElement('h3'); title.textContent = p.title;
-    const desc = document.createElement('p'); desc.textContent = p.description;
-    body.append(categoryEl, title, desc);
-    if (p.url && /^https:\/\//i.test(p.url)) { const link = document.createElement('a'); link.href = p.url; link.target = '_blank'; link.rel = 'sponsored noopener noreferrer'; link.textContent = 'View this find ↗'; link.setAttribute('aria-label', 'View '+p.title+' (affiliate link, opens in a new tab)'); body.append(link); }
-    else { const note = document.createElement('span'); note.className = 'product-category'; note.textContent = 'Coming soon'; body.append(note); }
-    card.append(picture, body); grid.append(card);
-  }
+const search = document.getElementById('product-search');
+const status = document.getElementById('product-status');
+const filters = document.querySelector('.filters');
+const buttons = [...filters.querySelectorAll('[data-filter]')];
+let activeCategory = 'All';
+
+for (const category of new Set(products.map(product => product.category))) {
+  if (buttons.some(button => button.dataset.filter === category)) continue;
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.dataset.filter = category;
+  button.textContent = category;
+  filters.append(button);
+  buttons.push(button);
 }
-buttons.forEach(button => button.addEventListener('click', () => { buttons.forEach(b => b.classList.toggle('active', b === button)); render(button.dataset.filter); }));
-document.querySelectorAll('[data-category]').forEach(link => link.addEventListener('click', () => { const category = link.dataset.category; const button = buttons.find(b => b.dataset.filter === category); if (button) button.click(); }));
+
+function searchText(value) {
+  return value.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+}
+
+function cardLink(url, text, label, relationship) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.target = '_blank';
+  link.rel = relationship;
+  link.textContent = text;
+  link.setAttribute('aria-label', label);
+  return link;
+}
+
+function productCard(product) {
+  const card = document.createElement('article');
+  card.className = 'product';
+  const picture = document.createElement('div');
+  picture.className = 'product-image';
+  if (product.image) {
+    const image = document.createElement('img');
+    image.src = product.image;
+    image.alt = product.imageAlt || product.title;
+    image.loading = 'lazy';
+    image.addEventListener('error', () => image.remove());
+    picture.append(image);
+  }
+
+  const body = document.createElement('div');
+  body.className = 'product-body';
+  const category = document.createElement('div');
+  category.className = 'product-category';
+  category.textContent = product.category;
+  const title = document.createElement('h3');
+  title.textContent = product.title;
+  const description = document.createElement('p');
+  description.textContent = product.description;
+  body.append(category, title, description);
+
+  const links = document.createElement('div');
+  links.className = 'product-links';
+  if (/^https:\/\//i.test(product.url)) {
+    links.append(cardLink(product.url, 'View this find ↗', `View ${product.title} (affiliate link, opens in a new tab)`, 'sponsored noopener noreferrer'));
+  } else {
+    const note = document.createElement('span');
+    note.className = 'product-category';
+    note.textContent = 'Coming soon';
+    links.append(note);
+  }
+  if (/^https:\/\/www\.pinterest\.com\/pin\/\d+\/?$/i.test(product.pinUrl)) {
+    links.append(cardLink(product.pinUrl, 'View Pin ↗', `View the Pinterest Pin for ${product.title} (opens in a new tab)`, 'noopener noreferrer'));
+  }
+  body.append(links);
+  card.append(picture, body);
+  return card;
+}
+
+function render() {
+  const query = searchText(search.value);
+  const terms = query ? query.split(' ') : [];
+  const visible = products.filter(product => {
+    if (activeCategory !== 'All' && activeCategory !== product.category) return false;
+    const text = searchText(`${product.title} ${product.category} ${product.description}`);
+    return terms.every(term => text.includes(term));
+  });
+
+  grid.replaceChildren(...visible.map(productCard));
+  status.textContent = visible.length
+    ? `${visible.length} ${visible.length === 1 ? 'find' : 'finds'}`
+    : products.length
+      ? 'No finds match these filters. Try another search or category.'
+      : 'New finds are coming soon. Check back for fresh discoveries!';
+}
+
+function selectCategory(category) {
+  activeCategory = category;
+  for (const button of buttons) {
+    const selected = button.dataset.filter === category;
+    button.classList.toggle('active', selected);
+    button.setAttribute('aria-pressed', selected);
+  }
+  render();
+}
+
+for (const button of buttons) {
+  button.addEventListener('click', () => selectCategory(button.dataset.filter));
+}
+for (const link of document.querySelectorAll('[data-category]')) {
+  link.addEventListener('click', () => {
+    search.value = '';
+    selectCategory(link.dataset.category);
+  });
+}
+search.addEventListener('input', render);
 document.getElementById('year').textContent = new Date().getFullYear();
-// Replace placeholder email address before publishing.
-render();
+selectCategory('All');
