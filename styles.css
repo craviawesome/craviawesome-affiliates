@@ -37,36 +37,39 @@ body{background:var(--cream);color:var(--ink)}
   z-index: 1;
   isolation: isolate;
   border: 0;
-  background: transparent;
+  background: linear-gradient(#ead7ae calc(100% - 16px), var(--deep) calc(100% - 16px));
 }
 .top::before {
   content: '';
   position: absolute;
-  inset: 0 0 -9px;
+  inset: 0 0 -8px;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(ellipse at 45% 22%, #f5e8c9, #ead7ae80 68%, #c19a6260),
-              #e9d4a8;
-  box-shadow: inset 0 -10px 16px #98704242;
-  clip-path: polygon(
-    0 0, 100% 0, 100% calc(100% - 5px), 98.8% calc(100% - 3px),
-    97.5% calc(100% - 7px), 95.7% calc(100% - 4px), 93.2% 100%,
-    91% calc(100% - 5px), 87.3% calc(100% - 3px), 85% calc(100% - 7px),
-    81.4% calc(100% - 4px), 78.6% calc(100% - 6px), 76% calc(100% - 2px),
-    72.8% calc(100% - 5px), 69.5% calc(100% - 2px), 65.5% calc(100% - 7px),
-    62.6% calc(100% - 3px), 59.5% calc(100% - 5px), 57.2% calc(100% - 1px),
-    54% calc(100% - 6px), 50.8% calc(100% - 3px), 48% calc(100% - 5px),
-    45.4% 100%, 42% calc(100% - 4px), 39.8% calc(100% - 7px),
-    37% calc(100% - 3px), 33.2% calc(100% - 5px), 29.3% calc(100% - 1px),
-    26.5% calc(100% - 4px), 23.3% calc(100% - 8px), 20% calc(100% - 5px),
-    17% calc(100% - 2px), 13.8% calc(100% - 7px), 11% calc(100% - 4px),
-    8.5% calc(100% - 6px), 5.8% calc(100% - 2px), 3% calc(100% - 5px),
-    1.4% calc(100% - 2px), 0 calc(100% - 6px)
-  );
+  background: url('assets/header-parchment.png') center / 100% 100% no-repeat;
+  filter: drop-shadow(0 2px 2px #26170965);
 }
-.top .brand-logo { filter: brightness(.32) saturate(.65); }
-.top .brand-studios, .top nav { color: #392c1c; }
+.top .brand {
+  position: relative;
+  isolation: isolate;
+  color: var(--light-gold);
+  margin-inline: 9px;
+}
+.top .brand::before {
+  content: '';
+  position: absolute;
+  inset: -7px -9px;
+  z-index: -1;
+  border: 1px solid #29180f;
+  border-radius: 4px;
+  background: linear-gradient(120deg, #452818c9, #170e09d1),
+              #23150e url('assets/header-walnut.jpg') center / cover;
+  box-shadow: inset 0 0 0 2px #7a522e80, inset 0 0 11px #0b0705,
+              0 2px 4px #4a2c2260;
+}
+.top .brand-logo { filter: drop-shadow(0 1px 1px #0b0705); }
+.top .brand:focus-visible { outline-color: #392c1c; outline-offset: 12px; }
 .top nav {
+  color: #392c1c;
   flex-wrap: wrap;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 700;
@@ -84,7 +87,7 @@ body{background:var(--cream);color:var(--ink)}
   min-height: clamp(560px, 66vw, 665px);
   padding: 60px 24px 68px;
   background-color: var(--deep);
-  background-image: url('assets/heritage-botanical.jpg');
+  background-image: url('assets/heritage-scrollwork.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -110,11 +113,14 @@ body{background:var(--cream);color:var(--ink)}
   position: relative;
   gap: 20px;
   padding: 16px 34px;
-  border: 1px solid #4d391e;
+  border: 1px solid #8a570f;
   border-radius: 3px;
-  background: linear-gradient(#efdaa2, #c4a05d 53%, #e2c682);
-  color: #20261e;
-  box-shadow: inset 0 0 0 2px #eed9a580, inset 0 -3px 0 #6b4a2c50, 0 5px 12px #0007;
+  background: linear-gradient(#fff1a5, #f3cb52 34%, #e5b128 67%, #f1c950);
+  color: #472b08;
+  font: 700 19px/1 'Cormorant Garamond', Georgia, serif;
+  text-shadow: 0 -1px #fff5bb, 0 1px #a86a1b6e;
+  box-shadow: inset 0 0 0 2px #ffed9a, inset 0 0 0 4px #a96f22,
+              inset 0 -6px 6px #a36a2359, 0 5px 12px #0008;
 }
 .heritage-button::before, .heritage-button::after {
   content: '';
@@ -123,8 +129,8 @@ body{background:var(--cream);color:var(--ink)}
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #eadab4, #94754a 48%, #543f24 78%);
-  box-shadow: 0 0 0 1px #68492370;
+  background: radial-gradient(circle at 35% 30%, #fff1a5, #c9992f 48%, #795014 78%);
+  box-shadow: 0 0 0 1px #80551b7a;
   pointer-events: none;
 }
 .heritage-button::before { left: 10px; }
