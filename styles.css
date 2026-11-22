@@ -137,6 +137,9 @@ body{background:var(--cream);color:var(--ink)}
 .heritage-button::after { right: 10px; }
 .heritage-hero .heritage-button:hover { filter: brightness(1.09); }
 .heritage-hero .heritage-button:focus-visible { outline-color: var(--cream); }
+.manicule {
+  font: 400 22px/1 'Segoe UI Symbol', 'Apple Symbols', 'DejaVu Sans', serif;
+}
 @media (max-width: 560px) {
   .heritage-hero {
     min-height: 520px;
@@ -154,11 +157,83 @@ body{background:var(--cream);color:var(--ink)}
 .button:hover { background: var(--cream); }
 .section h2,.about h2{font-size:clamp(40px,5vw,62px);color:var(--blue)}
 .section-intro p{color:var(--green)}
-.c1{background:linear-gradient(145deg,#102F22,#0f6b4d)}.c2{background:linear-gradient(145deg,#202F57,#344b75)}.c3{background:linear-gradient(145deg,#193224,#6c5934)}
-.collection{border:1px solid var(--light-gold);position:relative}.collection:before{content:'✧';position:absolute;top:18px;right:23px;font-size:42px;color:var(--light-gold);opacity:.6}
-.collection span,.collection small{color:var(--cream)}.collection strong{font-size:39px}.collection b{color:var(--light-gold)}
+.collections, .products {
+  gap: clamp(10px, 2vw, 22px);
+  padding: clamp(12px, 3vw, 30px);
+  border: 5px ridge #795037;
+  border-radius: 3px;
+  background-color: #3a2419;
+  background-image: linear-gradient(#21110c45, #21110c70), url('assets/weathered-walnut.jpg');
+  background-position: center;
+  background-size: auto, 760px auto;
+  box-shadow: inset 0 3px 14px #1a0d09c4, 0 5px 12px #3a221e42;
+}
+.collections { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.c1 { --notice-ink: #234232; }
+.c2 { --notice-ink: #263858; }
+.c3 { --notice-ink: #573918; }
+.collection {
+  position: relative;
+  isolation: isolate;
+  justify-content: center;
+  align-items: center;
+  min-height: 252px;
+  padding: 34px clamp(10px, 2.5vw, 22px) 24px;
+  background: none;
+  color: var(--notice-ink);
+  text-align: center;
+  filter: drop-shadow(0 4px 4px #170c08a8);
+}
+.collection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url('assets/header-parchment.png') center / 100% 100% no-repeat;
+}
+.collection::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%);
+  border: 1px solid #472d1b;
+  border-radius: 50%;
+  background: radial-gradient(circle at 33% 30%, #c7a26a, #795337 49%, #342014 81%);
+  box-shadow: 1px 2px 2px #5136229c;
+}
+.collection:focus-visible { outline-color: #f3d88b; }
+.collection strong {
+  margin-top: 0;
+  font: 600 clamp(23px, 3.2vw, 38px)/1.13 Cinzel, Georgia, serif;
+  overflow-wrap: anywhere;
+}
+.collection small { color: #42301e; }
+.collection b { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-family: Cinzel, Georgia, serif; }
+@media (max-width: 680px) {
+  .collections { grid-template-columns: 1fr; }
+  .collection { min-height: 172px; }
+}
 .filters button{border-color:var(--blue);color:var(--blue)}.filters button.active,.filters button:hover{background:var(--blue);color:var(--cream)}
-.product{background:var(--cream);border:1px solid #c9b48c;box-shadow:0 6px 22px #202F570d}.product-image{background:#e9dec9}.product-category{color:#85601d}.product h3{color:var(--blue);font-size:30px}.product p{color:var(--green)}.product a{color:var(--blue);border-bottom-color:var(--gold)}
+.products:empty { display: none; }
+.product {
+  border: 1px solid #1b100c;
+  background: #3a2419;
+  box-shadow: 0 0 0 1px #805d45, 0 3px 6px #1b0e0bbb;
+}
+.product-image {
+  background: linear-gradient(#20130ed6, #100a07a6), #20130e url('assets/weathered-walnut.jpg') center / cover;
+  border-bottom: 7px ridge #8a5a37;
+  box-shadow: inset 0 7px 13px #140a06bf, inset 4px 0 8px #140a069c, inset -4px 0 8px #140a069c;
+}
+.product-category { color: #f1ce82; }
+.product h3 { color: #ffe8b4; font-size: 30px; }
+.product p, .product .product-link-disclosure { color: #f6e9d2; }
+.product a { color: #ffe8b4; border-bottom-color: #ceab68; }
+.product a:hover, .product .product-links a:hover { color: #fff9e9; }
+.product:focus-visible { outline-color: #f3d88b; }
 .about{background:#e8dbc2;border-top:1px solid var(--gold)}.about p{color:var(--green)}
 footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--light-gold)}footer strong{font-family:'Cormorant Garamond',serif;font-size:30px}footer p, .footer-right small{color:var(--cream)}
 .disclosure-inline{max-width:700px;margin:-12px auto 28px;text-align:center;font-size:12px;line-height:1.6;color:var(--green)}
@@ -191,9 +266,9 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 }
 .product { display: flex; flex-direction: column; scroll-margin-top: 20px; }
 .product-image { position: relative; height: auto; aspect-ratio: 4 / 5; }
-.product-image img { position: absolute; inset: 0; object-fit: contain; }
+.product-image img { position: absolute; inset: 10px; width: calc(100% - 20px); height: calc(100% - 20px); object-fit: contain; }
 .product-image:empty { display: none; }
-.product-body { display: flex; flex: 1; flex-direction: column; }
+.product-body { display: flex; flex: 1; flex-direction: column; padding: clamp(14px, 2.5vw, 23px); }
 .product p { min-height: 0; margin: 0 0 12px; }
 .product-links {
   display: flex;
