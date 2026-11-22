@@ -72,6 +72,8 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   margin-top: auto;
 }
 .product-links a:hover { color: var(--sage); }
+.product-offer { display: inline-flex; align-items: baseline; gap: 6px; }
+.product-link-disclosure { color: var(--green); font-size: 12px; }
 .pinterest-section { padding-top: 0; text-align: center; }
 .pinterest-section .section-intro { margin-bottom: 24px; }
 .pinterest-widget { max-width: 1100px; margin: 0 auto; }

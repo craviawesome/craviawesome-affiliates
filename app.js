@@ -58,7 +58,16 @@ function productCard(product) {
   const links = document.createElement('div');
   links.className = 'product-links';
   if (/^https:\/\//i.test(product.url)) {
-    links.append(cardLink(product.url, 'View this find ↗', `View ${product.title} (affiliate link, opens in a new tab)`, 'sponsored noopener noreferrer'));
+    const isAmazon = /^https:\/\/(?:www\.amazon\.com|link\.amazon|amzn\.to)(?:[/?#]|$)/i.test(product.url);
+    const label = isAmazon ? 'View on Amazon' : 'View this find';
+    const offer = document.createElement('span');
+    offer.className = 'product-offer';
+    const link = cardLink(product.url, `${label} ↗`, `${label} — ${product.title} (paid link, opens in a new tab)`, 'sponsored noopener');
+    const disclosure = document.createElement('span');
+    disclosure.className = 'product-link-disclosure';
+    disclosure.textContent = '(paid link)';
+    offer.append(link, disclosure);
+    links.append(offer);
   } else {
     const note = document.createElement('span');
     note.className = 'product-category';

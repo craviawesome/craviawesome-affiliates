@@ -17,10 +17,10 @@ Edit `products.js`, the product log and source for the searchable catalog. Each 
 | `description` | A short description that also contributes to search results |
 | `image` | An authorized image URL or local asset path |
 | `imageAlt` | A short description of the image |
-| `url` | The original HTTPS affiliate URL. Leave blank to show **Coming soon**. |
+| `url` | The full HTTPS Amazon Associates link from SiteStripe, using the website tracking ID. Leave blank to show **Coming soon**. |
 | `pinUrl` | The corresponding canonical `https://www.pinterest.com/pin/<id>/` URL |
 
-The initial catalog uses existing Geek Gift Guide creatives and Amazon affiliate URLs from the studio’s published Pins. Each entry was matched to its Pin and Amazon destination, with duplicate products consolidated. Review these fields together when adding or updating an entry.
+The initial catalog uses existing Geek Gift Guide creatives and Amazon affiliate URLs from the studio’s published Pins. Each entry was matched to its Pin and Amazon destination, with duplicate products consolidated. When adding or replacing a link, open the intended listing in a browser and copy the **Full Link** from SiteStripe with the website tracking ID selected. Check that the stored URL points to the correct listing and contains the website’s `tag` parameter. For routine catalog checks, inspect the stored URLs without automatically visiting affiliate links.
 
 ## Pinterest gallery
 
