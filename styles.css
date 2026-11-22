@@ -46,8 +46,7 @@ body{background:var(--cream);color:var(--ink)}
   min-height: clamp(560px, 66vw, 665px);
   padding: 60px 24px 68px;
   background-color: var(--deep);
-  background-image: linear-gradient(90deg, #10251920, #10251955 42%, #10251946 65%, #10251920),
-                    url('assets/heritage-hero.jpg');
+  background-image: url('assets/heritage-botanical.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -63,13 +62,11 @@ body{background:var(--cream);color:var(--ink)}
   max-width: 100%;
   padding: 8px 14px 7px;
   border: 1px solid #b28f5e;
-  background: radial-gradient(ellipse at 34% 28%, #f7e9c8, transparent 70%),
-              repeating-linear-gradient(172deg, #c29c6414 0 1px, transparent 1px 4px),
-              #dfc799;
+  background: #ead7ae;
   color: #3d321f;
   font: 700 11px/1.45 'Courier New', Courier, monospace;
   letter-spacing: .11em;
-  box-shadow: inset 0 0 6px #79532d38, 0 2px 5px #0006;
+  box-shadow: 0 2px 5px #0004;
 }
 .heritage-hero .heritage-button {
   position: relative;
@@ -77,8 +74,7 @@ body{background:var(--cream);color:var(--ink)}
   padding: 16px 34px;
   border: 1px solid #4d391e;
   border-radius: 3px;
-  background: repeating-linear-gradient(0deg, #fff2 0 1px, transparent 1px 3px),
-              linear-gradient(#efdaa2, #c4a05d 53%, #e2c682);
+  background: linear-gradient(#efdaa2, #c4a05d 53%, #e2c682);
   color: #20261e;
   box-shadow: inset 0 0 0 2px #eed9a580, inset 0 -3px 0 #6b4a2c50, 0 5px 12px #0007;
 }
@@ -101,7 +97,7 @@ body{background:var(--cream);color:var(--ink)}
   .heritage-hero {
     min-height: 520px;
     padding: 48px 20px 56px;
-    background-position: center, 16% center;
+    background-position: 8% center;
   }
   .hero.heritage-hero h1 { font-size: clamp(38px, 10.8vw, 52px); }
 }
