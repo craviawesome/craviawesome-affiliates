@@ -262,50 +262,77 @@ body{background:var(--cream);color:var(--ink)}
 .product-shelf-items {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(10px, 2vw, 22px);
+  gap: 0;
+  background: #342116 url('assets/weathered-walnut.jpg') center / 760px auto;
+  box-shadow: 0 0 0 1px #93664281, 0 4px 4px #1b0e0b7d;
 }
 .product {
   min-width: 0;
-  padding: 12px 9px;
-  border: 1px solid #22130b;
-  background: #302016 linear-gradient(145deg, #5b382773, #23150dac);
-  box-shadow: inset 0 0 0 1px #865d3a6e, 0 3px 6px #1b0e0b99;
+  border: 1px solid #28170e;
+  border-bottom: 6px ridge #81522e;
+  background: linear-gradient(90deg, #50342180, #3a211240 45%, #21120b8c);
+  box-shadow: inset 2px 0 #9d6b4359, inset -2px 0 #1a0f0abb;
 }
-.product-image {
-  --case-arch: polygon(50% 0%, 61% 6%, 72% 13%, 82% 21%, 90% 29%, 96% 38%, 99% 46%, 100% 54%,
-                       100% 100%, 0 100%, 0 54%, 1% 46%, 4% 38%, 10% 29%, 18% 21%, 28% 13%, 39% 6%);
+.product-niche {
+  order: -1;
   position: relative;
   isolation: isolate;
-  width: min(100%, 224px);
-  height: clamp(200px, 29vw, 264px);
-  margin: 0 auto;
-  clip-path: var(--case-arch);
-  background: linear-gradient(120deg, #edcc7a, #825330 42%, #cf9953 68%, #593519);
+  display: grid;
+  justify-items: center;
+  align-content: end;
+  min-height: 285px;
+  padding: 39px 12px 10px;
 }
-.product-image::before, .product-image::after {
+.product-niche::before {
+  --case-arch: polygon(50% 0, 65% 7%, 78% 15%, 89% 24%, 96% 33%, 100% 43%,
+                       100% 100%, 0 100%, 0 43%, 4% 33%, 11% 24%, 22% 15%, 35% 7%);
   content: '';
   position: absolute;
-  inset: 4px 4px 6px;
+  z-index: -1;
+  inset: 7px 8px 0;
   clip-path: var(--case-arch);
+  background: radial-gradient(ellipse at 56% 70%, #61433068, #1d120de0 79%),
+              #2b1910 url('assets/weathered-walnut.jpg') center / 450px auto;
+  box-shadow: inset 0 0 0 3px #a07246, inset 0 0 0 6px #3a2116,
+              inset 0 10px 32px #140b07d9;
 }
-.product-image::before {
-  background: radial-gradient(ellipse at 50% 21%, #8c644b50, #170f0ce8),
-              #252019 url('assets/weathered-walnut.jpg') center / cover;
+.product-niche::after {
+  --carving: radial-gradient(circle, #341d12 10%, #956441 17% 23%, #432315 28% 39%, #996743 44% 48%, transparent 53%);
+  content: '';
+  position: absolute;
+  inset: 5px 6px auto;
+  height: 18px;
+  pointer-events: none;
+  background: var(--carving) left center / 18px 18px no-repeat,
+              var(--carving) right center / 18px 18px no-repeat;
+}
+.product-image {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 148px);
+  height: clamp(177px, 22vw, 213px);
+  overflow: hidden;
+  border: 1px solid #d8ebdd88;
+  border-radius: 50% 50% 7% 7% / 32% 32% 3% 3%;
+  background: linear-gradient(90deg, #cfeadf39, #b3d1c609 34%, #e2f4eb27);
+  box-shadow: inset 3px 0 7px #f0fff449, inset -3px 0 6px #eafff139, 0 2px 7px #120b08a8;
 }
 .product-image img {
   position: absolute;
   z-index: 1;
-  inset: 22% 12% 8%;
-  width: 76%;
-  height: 70%;
+  inset: 18% 10% 7%;
+  width: 80%;
+  height: 75%;
   object-fit: contain;
 }
 .product-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(126deg, #fff5dd35 7%, transparent 16% 34%, #f0fff012 35% 38%, transparent 40%),
-              linear-gradient(90deg, #cad9ce24, transparent 16% 85%, #d1e3de26);
-  box-shadow: inset 0 0 0 1px #fff4d74a, inset 0 0 17px #111713b3;
+  background: radial-gradient(ellipse at 24% 16%, #fffdee48, transparent 29%),
+              linear-gradient(107deg, #f6fff23a, transparent 20% 31%, #f5fff41a 32% 35%, transparent 37% 82%, #e5f7ec39);
 }
 .product-image:empty { display: none; }
 .product-title {
@@ -314,7 +341,7 @@ body{background:var(--cream);color:var(--ink)}
   place-items: center;
   flex: 1;
   min-height: 52px;
-  margin: 11px 0 9px;
+  margin: 7px 9px 9px;
   padding: 9px 13px;
   border: 1px solid #93601e;
   border-radius: 3px;
@@ -328,25 +355,41 @@ body{background:var(--cream);color:var(--ink)}
   text-align: center;
   text-shadow: 0 1px #ffeb9c;
 }
-.product-links, .product-offer {
+.product-case-base {
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  width: min(100%, 171px);
+  min-height: 39px;
+  margin-top: -4px;
+  padding: 6px 8px 8px;
+  border: 1px solid #1d110c;
+  border-radius: 11px 11px 10px 10px / 6px 6px 5px 5px;
+  background: linear-gradient(#6d4a31 0%, #3b261a 18%, #17100b 58%, #533422 92%, #2a190f);
+  box-shadow: inset 0 2px #a47742b0, 0 4px 4px #180d09a8;
   text-align: center;
 }
 .product a.product-store-label {
+  max-width: 100%;
   margin: 0;
-  padding: 7px 13px;
-  border: 1px solid #a9814a;
+  padding: 5px 12px;
+  border: 1px solid #83571e;
   border-radius: 2px;
-  background: linear-gradient(#f3e3be, #d5b783);
-  box-shadow: inset 0 0 0 1px #f8e6bd99, 0 2px 3px #170d09aa;
+  background: radial-gradient(circle, #754718 0 1.5px, #ffebaa 2px, transparent 3px) left 3px center / 6px 6px no-repeat,
+              radial-gradient(circle, #754718 0 1.5px, #ffebaa 2px, transparent 3px) right 3px center / 6px 6px no-repeat,
+              linear-gradient(#fff2b2, #e7b845 48%, #ecc867);
+  box-shadow: inset 0 0 0 1px #ffe59e, inset 0 -2px #9d641766, 0 2px 3px #170d09aa;
   color: #382411;
+  font: 700 15px/1.15 'Cormorant Garamond', Georgia, serif;
+  text-shadow: 0 1px #ffe9a5;
+  overflow-wrap: anywhere;
 }
-.product a.product-store-label:hover { background: #fff0cf; }
+.product a.product-store-label:hover { filter: brightness(1.1); }
 .product a.product-store-label:focus-visible, .product:focus-visible { outline-color: #f3d88b; }
 .product-link-disclosure, .product-availability { color: #f8e6c5; font-size: 12px; }
+.product-link-disclosure { margin-top: 7px; }
 @media (max-width: 800px) {
   .product-shelf-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

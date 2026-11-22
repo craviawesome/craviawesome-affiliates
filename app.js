@@ -43,26 +43,25 @@ function productCard(product) {
   title.className = 'product-title';
   title.textContent = product.title;
 
-  const links = document.createElement('div');
-  links.className = 'product-links';
+  const base = document.createElement('div');
+  base.className = 'product-case-base';
+  let disclosure;
   if (product.available === false) {
     const note = document.createElement('span');
     note.className = 'product-availability';
     note.textContent = 'Currently unavailable';
-    links.append(note);
+    base.append(note);
     const alternative = products.find(item => item.id && item.id === product.alternativeId && item !== product && item.available !== false);
     if (alternative) {
       const link = document.createElement('a');
       link.className = 'product-store-label';
       link.href = `?product=${encodeURIComponent(alternative.id)}`;
       link.textContent = `See alternative: ${alternative.title}`;
-      links.append(link);
+      base.append(link);
     }
   } else if (/^https:\/\//i.test(product.url)) {
     const isAmazon = /^https:\/\/(?:www\.amazon\.com|link\.amazon|amzn\.to)(?:[/?#]|$)/i.test(product.url);
     const label = isAmazon ? 'View on Amazon' : 'View this find';
-    const offer = document.createElement('span');
-    offer.className = 'product-offer';
     const link = document.createElement('a');
     link.className = 'product-store-label';
     link.href = product.url;
@@ -70,18 +69,22 @@ function productCard(product) {
     link.rel = 'sponsored noopener';
     link.textContent = `${label} ↗`;
     link.setAttribute('aria-label', `${label} — ${product.title} (paid link, opens in a new tab)`);
-    const disclosure = document.createElement('span');
+    disclosure = document.createElement('span');
     disclosure.className = 'product-link-disclosure';
     disclosure.textContent = '(paid link)';
-    offer.append(link, disclosure);
-    links.append(offer);
+    base.append(link);
   } else {
     const note = document.createElement('span');
     note.className = 'product-availability';
     note.textContent = 'Coming soon';
-    links.append(note);
+    base.append(note);
   }
-  card.append(picture, title, links);
+
+  const niche = document.createElement('div');
+  niche.className = 'product-niche';
+  niche.append(picture, base);
+  if (disclosure) niche.append(disclosure);
+  card.append(title, niche);
   return card;
 }
 
