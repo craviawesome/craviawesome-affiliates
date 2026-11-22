@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202F57">
+  <meta name="description" content="A year-round Geek Gift Guide with Tolkien books, LEGO builds, fandom collectibles, and cozy gifts from CraviAwesome Studios.">
+  <title>Geek Gift Guide | CraviAwesome Studios</title>
+  <link rel="canonical" href="https://craviawesome-affiliates.pages.dev/geek-gift-guide/">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../" aria-label="CraviAwesome Studios home"><img class="brand-logo" src="../assets/craviawesome-logo.png" alt="CraviAwesome"><span class="brand-studios">Studios</span></a>
+  <nav aria-label="Main navigation">
+    <a href="../">Home</a>
+    <a href="#finds">Browse gifts</a>
+    <a href="../#pinterest">Pinterest</a>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero guide-hero">
+    <img class="hero-emblem" src="../assets/craviawesome-emblem.png" alt="" aria-hidden="true">
+    <h1>Geek Gift Guide</h1>
+    <p>From illustrated Tolkien editions to LEGO builds and fandom finds, explore gifts for the people who would happily spend another day in Middle-earth.</p>
+  </section>
+  <section class="section finds-section guide-catalog" id="finds" aria-labelledby="catalog-title">
+    <p class="disclosure-inline">Some links may be affiliate links. As an Amazon Associate I earn from qualifying purchases.</p>
+    <div class="section-intro"><h2 id="catalog-title">Find a gift</h2></div>
+    <div class="catalog-search">
+      <label for="product-search">Search gifts</label>
+      <input id="product-search" type="search" placeholder="Search by name or keyword">
+    </div>
+    <div class="filters" role="group" aria-label="Filter gifts by category">
+      <button type="button" class="active" data-filter="All" aria-pressed="true">All gifts</button>
+    </div>
+    <p class="product-status" id="product-status" role="status"></p>
+    <div class="products" id="products"></div>
+    <noscript><p>Enable JavaScript to browse the gift guide.</p></noscript>
+  </section>
+</main>
+<footer>
+  <div><strong><img class="footer-emblem" src="../assets/craviawesome-emblem.png" alt=""> CraviAwesome Studios</strong></div>
+  <div class="footer-right">
+    <a href="#disclosure">Affiliate disclosure</a>
+    <p id="disclosure">Some links on this site are affiliate links. We may earn a commission if you purchase through them, at no additional cost to you. As an Amazon Associate I earn from qualifying purchases.</p>
+    <small>© <span id="year"></span> CraviAwesome Studios · CraviAwesome LLC</small>
+  </div>
+</footer>
+<script src="../products.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

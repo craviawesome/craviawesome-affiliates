@@ -4,6 +4,8 @@ const search = document.getElementById('product-search');
 const status = document.getElementById('product-status');
 const filters = document.querySelector('.filters');
 const buttons = [...filters.querySelectorAll('[data-filter]')];
+const catalogBase = document.currentScript.src;
+const pinterestPinPattern = /^https:\/\/www\.pinterest\.com\/pin\/(\d+)\/?$/i;
 let activeCategory = 'All';
 
 for (const category of new Set(products.map(product => product.category))) {
@@ -31,15 +33,16 @@ function cardLink(url, text, label, relationship) {
 }
 
 function productCard(product) {
-  const pin = /^https:\/\/www\.pinterest\.com\/pin\/(\d+)\/?$/i.exec(product.pinUrl);
+  const pin = pinterestPinPattern.exec(product.pinUrl);
   const card = document.createElement('article');
   card.className = 'product';
-  if (pin) card.id = `product-${pin[1]}`;
+  const productId = product.id || pin?.[1];
+  if (productId) card.id = `product-${productId}`;
   const picture = document.createElement('div');
   picture.className = 'product-image';
   if (product.image) {
     const image = document.createElement('img');
-    image.src = product.image;
+    image.src = new URL(product.image, catalogBase).href;
     image.alt = product.imageAlt || product.title;
     image.loading = 'lazy';
     image.addEventListener('error', () => image.remove());
@@ -59,7 +62,19 @@ function productCard(product) {
 
   const links = document.createElement('div');
   links.className = 'product-links';
-  if (/^https:\/\//i.test(product.url)) {
+  if (product.available === false) {
+    const note = document.createElement('span');
+    note.className = 'product-category';
+    note.textContent = 'Currently unavailable';
+    links.append(note);
+    const alternative = products.find(item => item.id && item.id === product.alternativeId && item !== product && item.available !== false);
+    if (alternative) {
+      const link = document.createElement('a');
+      link.href = `?product=${encodeURIComponent(alternative.id)}`;
+      link.textContent = `See alternative: ${alternative.title}`;
+      links.append(link);
+    }
+  } else if (/^https:\/\//i.test(product.url)) {
     const isAmazon = /^https:\/\/(?:www\.amazon\.com|link\.amazon|amzn\.to)(?:[/?#]|$)/i.test(product.url);
     const label = isAmazon ? 'View on Amazon' : 'View this find';
     const offer = document.createElement('span');
@@ -124,8 +139,13 @@ search.addEventListener('input', render);
 document.getElementById('year').textContent = new Date().getFullYear();
 selectCategory('All');
 
-const linkedPinId = new URLSearchParams(window.location.search).get('product');
-const linkedProduct = document.getElementById(`product-${linkedPinId}`);
+const requestedProduct = new URLSearchParams(window.location.search).get('product');
+const linkedItem = requestedProduct && products.find(product =>
+  product.id === requestedProduct ||
+  product.legacyPinId === requestedProduct ||
+  pinterestPinPattern.exec(product.pinUrl)?.[1] === requestedProduct
+);
+const linkedProduct = linkedItem && document.getElementById(`product-${linkedItem.id || requestedProduct}`);
 if (linkedProduct) {
   linkedProduct.tabIndex = -1;
   linkedProduct.focus({ preventScroll: true });

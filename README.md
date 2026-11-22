@@ -12,6 +12,8 @@ Edit `products.js`, the product log and source for the searchable catalog. Each 
 
 | Field | What to enter |
 | --- | --- |
+| `id` | A permanent, unique URL slug. Keep it when the product listing, title, or artwork changes. |
+| `legacyPinId` | For existing products, preserve this alias so previously shared numeric links still work. |
 | `title` | Product name as shown in the catalog |
 | `category` | A collection name or a new category. The catalog adds filters for new categories automatically. |
 | `description` | A short description that also contributes to search results |
@@ -19,6 +21,8 @@ Edit `products.js`, the product log and source for the searchable catalog. Each 
 | `imageAlt` | A short description of the image |
 | `url` | The full HTTPS Amazon Associates link from SiteStripe, using the website tracking ID. Leave blank to show **Coming soon**. |
 | `pinUrl` | The corresponding canonical `https://www.pinterest.com/pin/<id>/` URL |
+| `available` | Set to `false` if a listing is no longer usable. The card stays reachable and is marked unavailable. |
+| `alternativeId` | Optional ID of a verified alternative already in the catalog. |
 
 The initial catalog uses existing Geek Gift Guide creatives and Amazon affiliate URLs from the studio’s published Pins. Each entry was matched to its Pin and Amazon destination, with duplicate products consolidated. When adding or replacing a link, open the intended listing in a browser and copy the **Full Link** from SiteStripe with the website tracking ID selected. Check that the stored URL points to the correct listing and contains the website’s `tag` parameter. For routine catalog checks, inspect the stored URLs without automatically visiting affiliate links.
 
@@ -26,7 +30,7 @@ The initial catalog uses existing Geek Gift Guide creatives and Amazon affiliate
 
 The site uses Pinterest’s [Profile Add-On](https://help.pinterest.com/en/business/article/build-a-website-widget) to display the latest Pins from `@craviawesome`. The gallery updates through Pinterest and the **Browse all Pins on Pinterest** link goes to the full profile. Maintain the catalog independently in `products.js`.
 
-To link a Pin to its matching catalog card, use `https://craviawesome-affiliates.pages.dev/?product=<pin-id>` with the numeric ID from the product’s `pinUrl`. Open that URL to confirm it lands on the intended product before saving it as the Pin’s destination.
+Link roundup Pins to `https://craviawesome-affiliates.pages.dev/geek-gift-guide/`. Link individual Pins to `https://craviawesome-affiliates.pages.dev/geek-gift-guide/?product=<id>` with the permanent ID from the product log. Open that URL to confirm it lands on the intended product before saving it as the Pin’s destination. Earlier numeric Pin links still work. The guide's existing studio artwork is served from `assets/gift-guide/`.
 
 ## Publish on Cloudflare Pages
 
