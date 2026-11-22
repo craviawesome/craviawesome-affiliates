@@ -22,16 +22,6 @@ function searchText(value) {
   return value.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 }
 
-function cardLink(url, text, label, relationship) {
-  const link = document.createElement('a');
-  link.href = url;
-  link.target = '_blank';
-  link.rel = relationship;
-  link.textContent = text;
-  link.setAttribute('aria-label', label);
-  return link;
-}
-
 function productCard(product) {
   const pin = pinterestPinPattern.exec(product.pinUrl);
   const card = document.createElement('article');
@@ -49,27 +39,21 @@ function productCard(product) {
     picture.append(image);
   }
 
-  const body = document.createElement('div');
-  body.className = 'product-body';
-  const category = document.createElement('div');
-  category.className = 'product-category';
-  category.textContent = product.category;
-  const title = document.createElement('h3');
+  const title = document.createElement('h4');
+  title.className = 'product-title';
   title.textContent = product.title;
-  const description = document.createElement('p');
-  description.textContent = product.description;
-  body.append(category, title, description);
 
   const links = document.createElement('div');
   links.className = 'product-links';
   if (product.available === false) {
     const note = document.createElement('span');
-    note.className = 'product-category';
+    note.className = 'product-availability';
     note.textContent = 'Currently unavailable';
     links.append(note);
     const alternative = products.find(item => item.id && item.id === product.alternativeId && item !== product && item.available !== false);
     if (alternative) {
       const link = document.createElement('a');
+      link.className = 'product-store-label';
       link.href = `?product=${encodeURIComponent(alternative.id)}`;
       link.textContent = `See alternative: ${alternative.title}`;
       links.append(link);
@@ -79,7 +63,13 @@ function productCard(product) {
     const label = isAmazon ? 'View on Amazon' : 'View this find';
     const offer = document.createElement('span');
     offer.className = 'product-offer';
-    const link = cardLink(product.url, `${label} ↗`, `${label} — ${product.title} (paid link, opens in a new tab)`, 'sponsored noopener');
+    const link = document.createElement('a');
+    link.className = 'product-store-label';
+    link.href = product.url;
+    link.target = '_blank';
+    link.rel = 'sponsored noopener';
+    link.textContent = `${label} ↗`;
+    link.setAttribute('aria-label', `${label} — ${product.title} (paid link, opens in a new tab)`);
     const disclosure = document.createElement('span');
     disclosure.className = 'product-link-disclosure';
     disclosure.textContent = '(paid link)';
@@ -87,15 +77,11 @@ function productCard(product) {
     links.append(offer);
   } else {
     const note = document.createElement('span');
-    note.className = 'product-category';
+    note.className = 'product-availability';
     note.textContent = 'Coming soon';
     links.append(note);
   }
-  if (pin) {
-    links.append(cardLink(product.pinUrl, 'View Pin ↗', `View the Pinterest Pin for ${product.title} (opens in a new tab)`, 'noopener noreferrer'));
-  }
-  body.append(links);
-  card.append(picture, body);
+  card.append(picture, title, links);
   return card;
 }
 
@@ -108,7 +94,22 @@ function render() {
     return terms.every(term => text.includes(term));
   });
 
-  grid.replaceChildren(...visible.map(productCard));
+  const shelves = new Map();
+  for (const product of visible) {
+    if (!shelves.has(product.category)) shelves.set(product.category, []);
+    shelves.get(product.category).push(productCard(product));
+  }
+  grid.replaceChildren(...Array.from(shelves, ([category, cards]) => {
+    const shelf = document.createElement('section');
+    shelf.className = 'product-shelf';
+    const heading = document.createElement('h3');
+    heading.textContent = category;
+    const items = document.createElement('div');
+    items.className = 'product-shelf-items';
+    items.append(...cards);
+    shelf.append(heading, items);
+    return shelf;
+  }));
   status.textContent = visible.length
     ? `${visible.length} ${visible.length === 1 ? 'find' : 'finds'}`
     : products.length
