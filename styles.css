@@ -126,7 +126,8 @@ body{background:var(--cream);color:var(--ink)}
 .heritage-hero p {
   max-width: 580px;
   margin-bottom: 32px;
-  font: 400 clamp(14px, 1.5vw, 16px)/1.7 'Courier New', Courier, monospace;
+  font: 600 clamp(18px, 2vw, 22px)/1.45 var(--heading-font);
+  text-wrap: balance;
 }
 .heritage-hero .eyebrow {
   position: relative;
@@ -699,17 +700,7 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 .pinterest-section > .button:focus-visible { outline-color: #ffe3a3; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
-.newsletter-launcher {
-  margin-top: 18px;
-  min-height: 44px;
-  padding: 6px 16px;
-  border: 1px solid #e3b95793;
-  border-radius: 3px;
-  background: #0a281ec9;
-  color: #ffe3a3;
-  font: 600 19px/1.2 var(--heading-font);
-}
-.newsletter-launcher:hover { background: #1b4734; }
+.newsletter-launcher[hidden] { display: none; }
 .newsletter-window {
   position: fixed;
   width: min(540px, calc(100% - 28px));
