@@ -803,7 +803,8 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 }
 .newsletter-scroll {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  isolation: isolate;
 }
 .newsletter-window[open]:not([data-welcome]) .newsletter-scroll {
   animation: newsletter-hover-roll .88s ease-in-out both;
@@ -816,7 +817,6 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 }
 .newsletter-roller {
   position: relative;
-  z-index: 2;
   height: clamp(20px, 5vw, 31px);
   margin-inline: var(--scroll-inset);
   border-radius: 5px / 40%;
@@ -843,10 +843,11 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 }
 .newsletter-scroll-sheet {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: 1fr;
   min-height: var(--scroll-roll-depth);
-  margin-block: -2px;
+  margin-block-start: -9px;
   margin-inline: var(--scroll-inset);
   overflow: hidden;
   background: url('assets/newsletter-scroll-deckle.png') center / 100% 100% no-repeat;
