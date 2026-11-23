@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#202F57"><meta name="description" content="Curated discoveries, thoughtful gifts and everyday wonders from CraviAwesome Studios."><title>CraviAwesome Studios | Curated Finds & Gifts</title><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="styles.css?v=leaded-window">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#202F57"><meta name="description" content="Curated discoveries, thoughtful gifts and everyday wonders from CraviAwesome Studios."><title>CraviAwesome Studios | Curated Finds & Gifts</title><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="styles.css?v=sealed-letter">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -84,32 +84,30 @@
   <div><strong><img class="footer-emblem" src="assets/craviawesome-emblem.png" alt=""> CraviAwesome Studios</strong><p>Curiosity looks good on you.</p></div><div class="footer-right"><a href="#disclosure">Affiliate disclosure</a><p id="disclosure">Disclosure: Some links on this site are affiliate links. We may earn a commission if you purchase through them, at no additional cost to you. As an Amazon Associate I earn from qualifying purchases.</p><small>© <span id="year"></span> CraviAwesome Studios · CraviAwesome LLC</small></div>
 </footer>
 <dialog class="newsletter-window" id="newsletter-window" aria-labelledby="newsletter-title">
-  <div class="newsletter-transom" aria-hidden="true"></div>
   <button class="newsletter-close" type="button" aria-label="Close email signup" autofocus>×</button>
-  <div class="newsletter-opening">
-    <div class="newsletter-content">
-      <h2 id="newsletter-title">Notes from the studio</h2>
+  <div class="newsletter-envelope">
+    <div class="newsletter-envelope-pocket" aria-hidden="true"></div>
+    <div class="newsletter-envelope-flap" aria-hidden="true"></div>
+    <img class="newsletter-seal" src="assets/craviawesome-wax-seal.png" width="128" height="128" alt="">
+    <template id="newsletter-welcome-graphic">
+      <img class="newsletter-welcome-graphic" src="assets/newsletter-welcome.jpg" width="760" height="760" alt="Welcome to the Awesome">
+    </template>
+  </div>
+  <div class="newsletter-content">
+    <h2 id="newsletter-title" tabindex="-1">Notes from the studio</h2>
+    <div id="newsletter-signup">
       <p>Occasional emails about new finds and gift guide updates.</p>
-      <form class="newsletter-form" method="post" data-buttondown-newsletter="" aria-describedby="newsletter-help">
-        <fieldset disabled>
-          <label for="newsletter-email">Email address</label>
-          <input id="newsletter-email" name="email" type="email" autocomplete="email" required>
-          <input type="hidden" name="embed" value="1">
-          <button class="button heritage-button" type="submit">Subscribe</button>
-        </fieldset>
-      </form>
-      <p id="newsletter-help">
-        <span class="newsletter-pending">Email signup is coming soon.</span>
-        <span class="newsletter-connected" hidden>Check your inbox to confirm. Unsubscribe anytime. Signup is handled by <a href="https://buttondown.com/legal/privacy">Buttondown</a>.</span>
-      </p>
+      <div class="newsletter-signup">
+        <script async src="https://eomail5.com/form/620dfe58-e781-11f1-bb74-13c89b14b295.js" data-form="620dfe58-e781-11f1-bb74-13c89b14b295"></script>
+      </div>
+      <p class="newsletter-signup-note">Unsubscribe anytime. Signup is handled by EmailOctopus and protected by reCAPTCHA. Google’s <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
     </div>
-    <div class="newsletter-pane newsletter-pane-left" aria-hidden="true"></div>
-    <div class="newsletter-pane newsletter-pane-right" aria-hidden="true"></div>
+    <p id="newsletter-welcome-note" hidden>Check your inbox for a note from CraviAwesome Studios.</p>
   </div>
 </dialog>
 <script src="products.js"></script>
 <script src="app.js"></script>
-<script src="newsletter.js" defer></script>
+<script src="newsletter.js?v=sealed-letter" defer></script>
 <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
 </body>
 </html>
