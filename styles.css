@@ -167,6 +167,15 @@ body{background:var(--cream);color:var(--ink)}
 .section h2,.about h2{font-size:clamp(40px,5vw,62px);color:var(--blue)}
 .section-intro p{color:var(--green)}
 .cottage-wall {
+  /* Clip the viewport-fixed texture to the collections and catalog. */
+  clip-path: inset(0);
+}
+.cottage-wall::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background: #9a8065 url('assets/cottage-cobblestone.jpg') center top / clamp(540px, 75vw, 900px) auto;
 }
 #finds {
