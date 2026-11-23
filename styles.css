@@ -123,10 +123,13 @@ body{background:var(--cream);color:var(--ink)}
 .heritage-hero::before, .heritage-hero::after { content: none; }
 .heritage-hero .hero-emblem { margin: 0 0 12px; }
 .heritage-hero h1 { margin: 22px 0 26px; }
-.heritage-hero p {
+.hero.heritage-hero > p {
   max-width: 580px;
   margin-bottom: 32px;
-  font: 600 clamp(18px, 2vw, 22px)/1.45 var(--heading-font);
+  font-family: var(--heading-font, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 600;
+  line-height: 1.45;
   text-wrap: balance;
 }
 .heritage-hero .eyebrow {
