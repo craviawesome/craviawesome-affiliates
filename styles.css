@@ -166,10 +166,12 @@ body{background:var(--cream);color:var(--ink)}
 .button:not(.heritage-button):hover { background: var(--cream); }
 .section h2,.about h2{font-size:clamp(40px,5vw,62px);color:var(--blue)}
 .section-intro p{color:var(--green)}
+.cottage-wall {
+  background: #9a8065 url('assets/cottage-cobblestone.jpg') center top / clamp(540px, 75vw, 900px) auto;
+}
 #finds {
   max-width: none;
   padding-inline: max(clamp(20px, 4vw, 24px), calc((100% - 1172px) / 2));
-  background: #9a8065 url('assets/cottage-cobblestone.jpg') center top / clamp(540px, 75vw, 900px) auto;
 }
 #finds :is(.disclosure-inline, .catalog-search label, .product-status) {
   width: fit-content;
