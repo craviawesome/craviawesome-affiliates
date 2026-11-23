@@ -537,16 +537,6 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   filter: drop-shadow(0 4px 3px #1b100bd4);
   pointer-events: none;
 }
-.catalog-lantern {
-  position: absolute;
-  top: clamp(14px, 3.4vw, 28px);
-  left: 95.1%;
-  width: clamp(37px, 8vw, 60px);
-  height: auto;
-  transform: translateX(-50%);
-  filter: drop-shadow(0 3px 5px #261306b8);
-  pointer-events: none;
-}
 .catalog-sign .eyebrow { color: #f0cd77; font-family: Cinzel, Georgia, serif; }
 .catalog-sign h2 {
   margin: 8px 0 6px;
