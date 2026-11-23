@@ -578,8 +578,29 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 .guide-hero { min-height: 0; padding: clamp(64px, 9vw, 112px) 24px; }
 .guide-hero p { margin-bottom: 0; }
 .guide-catalog { padding-top: 64px; }
-.pinterest-section { padding-top: 0; text-align: center; }
+.pinterest-section {
+  position: relative;
+  isolation: isolate;
+  max-width: none;
+  padding-top: clamp(64px, 8vw, 100px);
+  border-top: 2px solid var(--light-gold);
+  background: var(--blue);
+  text-align: center;
+}
+.pinterest-section::before, .pinterest-section::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: clamp(120px, 27vw, 340px);
+  aspect-ratio: 3 / 2;
+  background: url('assets/pinterest-gold-scrollwork.png') center / contain no-repeat;
+  pointer-events: none;
+}
+.pinterest-section::before { top: 10px; left: 10px; }
+.pinterest-section::after { right: 10px; bottom: 10px; transform: rotate(180deg); }
+.pinterest-section h2 { color: #ffe3a3; }
 .pinterest-section .section-intro { margin-bottom: 24px; }
 .pinterest-widget { max-width: 1100px; margin: 0 auto; }
 .pinterest-section > .button { margin-top: 24px; }
+.pinterest-section > .button:focus-visible { outline-color: #ffe3a3; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
