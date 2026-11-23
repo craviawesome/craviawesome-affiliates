@@ -1,5 +1,9 @@
 const products = window.STUDIO_PRODUCTS || [];
 const grid = document.getElementById('products');
+const horizontalShelves = grid.hasAttribute('data-horizontal-shelves');
+const shelfResizeObserver = horizontalShelves
+  ? new ResizeObserver(entries => entries.forEach(({ target }) => updateShelfControls(target)))
+  : null;
 const search = document.getElementById('product-search');
 const status = document.getElementById('product-status');
 const filters = document.querySelector('.filters');
@@ -86,6 +90,67 @@ function productCard(product) {
   return card;
 }
 
+function updateShelfControls(items) {
+  const controls = items.parentElement.querySelector('.product-shelf-controls');
+  const [previous, next] = controls.children;
+  const maxScroll = items.scrollWidth - items.clientWidth;
+  controls.hidden = maxScroll < 2;
+  items.tabIndex = controls.hidden ? -1 : 0;
+  previous.setAttribute('aria-disabled', items.scrollLeft < 2);
+  next.setAttribute('aria-disabled', items.scrollLeft >= maxScroll - 1);
+}
+
+function productShelf(category, cards, index) {
+  const shelf = document.createElement('section');
+  shelf.className = 'product-shelf';
+  const heading = document.createElement('h3');
+  heading.textContent = category;
+  const items = document.createElement('div');
+  items.className = 'product-shelf-items';
+  items.append(...cards);
+  shelf.append(heading, items);
+
+  if (horizontalShelves) {
+    items.id = `product-shelf-items-${index}`;
+    heading.id = `product-shelf-heading-${index}`;
+    items.setAttribute('aria-labelledby', heading.id);
+    items.setAttribute('role', 'region');
+    const header = document.createElement('div');
+    header.className = 'product-shelf-header';
+    const controls = document.createElement('div');
+    controls.className = 'product-shelf-controls';
+    controls.hidden = true;
+    for (const [direction, arrow, label] of [[-1, '‹', 'Previous'], [1, '›', 'Next']]) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = arrow;
+      button.setAttribute('aria-label', `${label} finds in ${category}`);
+      button.setAttribute('aria-controls', items.id);
+      button.addEventListener('click', () => {
+        if (button.getAttribute('aria-disabled') === 'true') return;
+        items.scrollBy({ left: direction * items.clientWidth });
+      });
+      controls.append(button);
+    }
+    header.append(heading, controls);
+    shelf.prepend(header);
+
+    for (let slot = cards.length; slot < 3; slot++) {
+      const cubby = document.createElement('div');
+      cubby.className = 'product product-shelf-empty';
+      cubby.setAttribute('aria-hidden', 'true');
+      const niche = document.createElement('div');
+      niche.className = 'product-niche';
+      cubby.append(niche);
+      items.append(cubby);
+    }
+    items.addEventListener('scroll', () => updateShelfControls(items), { passive: true });
+    shelfResizeObserver.observe(items);
+  }
+
+  return shelf;
+}
+
 function render() {
   const query = searchText(search.value);
   const terms = query ? query.split(' ') : [];
@@ -100,17 +165,8 @@ function render() {
     if (!shelves.has(product.category)) shelves.set(product.category, []);
     shelves.get(product.category).push(productCard(product));
   }
-  grid.replaceChildren(...Array.from(shelves, ([category, cards]) => {
-    const shelf = document.createElement('section');
-    shelf.className = 'product-shelf';
-    const heading = document.createElement('h3');
-    heading.textContent = category;
-    const items = document.createElement('div');
-    items.className = 'product-shelf-items';
-    items.append(...cards);
-    shelf.append(heading, items);
-    return shelf;
-  }));
+  shelfResizeObserver?.disconnect();
+  grid.replaceChildren(...Array.from(shelves, ([category, cards], index) => productShelf(category, cards, index)));
   status.textContent = visible.length
     ? `${visible.length} ${visible.length === 1 ? 'find' : 'finds'}`
     : products.length
