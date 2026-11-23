@@ -850,10 +850,7 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 }
 #newsletter-signup .mastfoot p { color: var(--scroll-text); }
 #newsletter-signup .mastfoot a {
-  display: inline-block;
-  padding: 2px 5px;
-  border-radius: 3px;
-  background: #fff7e7;
+  background-color: #fff7e7;
 }
 @keyframes newsletter-unroll {
   from { grid-template-rows: 0fr; }
