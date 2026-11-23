@@ -714,7 +714,8 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   max-height: calc(100dvh - 24px);
   margin: auto;
   padding: 14px 0 16px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   border: 0;
   background: transparent;
   color: var(--scroll-ink);
@@ -750,7 +751,6 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 .newsletter-scroll {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  filter: drop-shadow(0 8px 13px #0007);
 }
 .newsletter-window[open]:not([data-welcome]) .newsletter-scroll {
   animation: newsletter-hover-roll .88s ease-in-out both;
@@ -794,6 +794,7 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   grid-template-rows: 1fr;
   min-height: var(--scroll-roll-depth);
   margin-inline: var(--scroll-inset);
+  overflow: hidden;
   clip-path: polygon(.6% 0, 99.6% 0, 99.3% 5%, 99.8% 10%, 98.9% 16%,
                      99.4% 21%, 99.1% 25%, 100% 30%, 99.6% 37%, 98.8% 42%,
                      99.5% 46%, 99.1% 52%, 99.7% 58%, 98.8% 62%, 99.3% 67%,
