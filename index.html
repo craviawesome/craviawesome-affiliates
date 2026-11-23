@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#202F57"><meta name="description" content="Curated discoveries, thoughtful gifts and everyday wonders from CraviAwesome Studios."><title>CraviAwesome Studios | Curated Finds & Gifts</title><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="styles.css?v=cottage-wall">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#202F57"><meta name="description" content="Curated discoveries, thoughtful gifts and everyday wonders from CraviAwesome Studios."><title>CraviAwesome Studios | Curated Finds & Gifts</title><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="styles.css?v=catalog-panel">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -43,9 +43,19 @@
     <h2>Find something delightful</h2>
     <p>A growing collection of favorites and unexpected discoveries.</p>
   </div>
-  <div class="catalog-search"><label for="product-search">Search products</label><input id="product-search" type="search" placeholder="Search by name or keyword"></div>
-  <div class="filters" role="group" aria-label="Filter products by category"><button type="button" class="active" data-filter="All" aria-pressed="true">All finds</button><button type="button" aria-pressed="false" data-filter="Fantasy & Fandom">Fantasy & Fandom</button><button type="button" aria-pressed="false" data-filter="Books & Cozy Finds">Books & Cozy</button><button type="button" aria-pressed="false" data-filter="Gifts & Gadgets">Gifts & Gadgets</button></div>
-  <p class="product-status" id="product-status" role="status"></p>
+  <div class="catalog-controls">
+    <div class="catalog-search">
+      <label for="product-search">Search products</label>
+      <input id="product-search" type="search" placeholder="Search by name or keyword">
+    </div>
+    <div class="filters" role="group" aria-label="Filter products by category">
+      <button type="button" class="active" data-filter="All" aria-pressed="true">All finds</button>
+      <button type="button" aria-pressed="false" data-filter="Fantasy & Fandom">Fantasy & Fandom</button>
+      <button type="button" aria-pressed="false" data-filter="Books & Cozy Finds">Books & Cozy</button>
+      <button type="button" aria-pressed="false" data-filter="Gifts & Gadgets">Gifts & Gadgets</button>
+    </div>
+    <p class="product-status" id="product-status" role="status"></p>
+  </div>
   <div class="products" id="products"></div>
   <noscript><p>Enable JavaScript to browse the product catalog.</p></noscript>
 </section>

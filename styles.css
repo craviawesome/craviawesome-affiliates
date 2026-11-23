@@ -173,14 +173,10 @@ body{background:var(--cream);color:var(--ink)}
   max-width: none;
   padding-inline: max(clamp(20px, 4vw, 24px), calc((100% - 1172px) / 2));
 }
-#finds :is(.disclosure-inline, .catalog-search label, .product-status) {
+#finds .disclosure-inline {
   width: fit-content;
   padding: 4px 10px;
   border-radius: 3px;
-  background: var(--cream);
-}
-#finds .product-status { margin-inline: auto; }
-#finds .filters button:not(.active):not(:hover) {
   background: var(--cream);
 }
 .collections, .products {
@@ -515,6 +511,59 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   color: var(--green);
   text-align: center;
   font-size: 14px;
+}
+.catalog-controls {
+  max-width: 610px;
+  margin: 0 auto 24px;
+  padding: clamp(16px, 3vw, 26px);
+  border: 4px ridge #98704b;
+  border-radius: 5px;
+  background: linear-gradient(#21110c48, #21110c91),
+              #3a2419 url('assets/weathered-walnut.jpg') center / 760px auto;
+  box-shadow: inset 0 0 0 1px #d3a06b69, 0 5px 12px #24160f85;
+}
+.catalog-controls .catalog-search {
+  max-width: none;
+  margin-bottom: 16px;
+  color: #ffe6aa;
+  font: 700 15px/1.3 'Courier New', Courier, monospace;
+}
+.catalog-controls input {
+  min-height: 44px;
+  border-color: #9b7547;
+  border-radius: 2px;
+  background: linear-gradient(#f6e3bb, #ffefcc);
+  box-shadow: inset 0 2px 4px #69432138;
+  color: #362416;
+  font-size: 16px;
+}
+.catalog-controls input::placeholder { color: #6b5138; }
+.catalog-controls .filters { margin-bottom: 14px; }
+.catalog-controls .filters button {
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid #bd924b;
+  border-radius: 2px;
+  background: linear-gradient(#ffe6a3, #dbac4b 52%, #e9c367);
+  box-shadow: inset 0 0 0 1px #ffebad80, 0 2px 3px #160c07a6;
+  color: #362416;
+  font: 700 16px/1.15 'Cormorant Garamond', Georgia, serif;
+}
+.catalog-controls .filters button[aria-pressed='true'] {
+  background: linear-gradient(#0a281d, #174230);
+  box-shadow: inset 0 2px 4px #071c15, inset 0 0 0 1px #dbac4b80;
+  color: #ffe6aa;
+}
+.catalog-controls .filters button:hover { filter: brightness(1.12); }
+.catalog-controls :is(input, button):focus-visible { outline: 2px solid #ffe6aa; outline-offset: 3px; }
+.catalog-controls .product-status {
+  margin: 0;
+  color: #ffe6aa;
+  font: 400 14px/1.4 'Courier New', Courier, monospace;
+}
+.catalog-controls .product-status:empty { display: none; }
+@media (max-width: 560px) {
+  .catalog-controls .filters button { flex: 1 1 calc(50% - 5px); }
 }
 .product { display: flex; flex-direction: column; scroll-margin-top: 20px; }
 .guide-hero { min-height: 0; padding: clamp(64px, 9vw, 112px) 24px; }
