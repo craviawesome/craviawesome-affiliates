@@ -69,11 +69,13 @@ body{background:var(--cream);color:var(--ink)}
 .top .brand-logo { filter: drop-shadow(0 1px 1px #0b0705); }
 .top .brand:focus-visible { outline-color: #392c1c; outline-offset: 12px; }
 .top nav {
-  color: #392c1c;
+  color: #2e2116;
   flex-wrap: wrap;
   font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(13px, 1.8vw, 15px);
   font-weight: 700;
 }
+.top nav a { text-shadow: .25px 0 currentColor; }
 .top nav a:hover { color: #6c451c; text-decoration: underline; }
 .hero{background:radial-gradient(ellipse at 75% 20%,#164e3c 0,transparent 50%),radial-gradient(ellipse at 0 100%,#202F57 0,transparent 55%),var(--deep);color:var(--cream);border-bottom:4px double var(--light-gold)}
 .hero h1,.section h2,.about h2,.collection strong,.product h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
@@ -505,14 +507,13 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 @media(max-width:560px){.top nav{width:100%;justify-content:space-between;gap:8px 12px}.hero h1{font-size:52px}}
 
 .catalog-sign {
-  --beam-depth: clamp(17px, 3.3vw, 28px);
   position: relative;
   isolation: isolate;
   display: grid;
   align-content: center;
   max-width: 720px;
   min-height: clamp(220px, 38vw, 322px);
-  margin: var(--beam-depth) auto 32px;
+  margin: clamp(72px, 19vw, 154px) auto 32px;
   padding: clamp(70px, 11.5vw, 110px) clamp(28px, 8vw, 88px) clamp(22px, 4vw, 36px);
   color: #f5d687;
   text-shadow: 0 -1px #28180d, 0 1px #694221, 0 2px 3px #190c07;
@@ -529,14 +530,22 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   content: '';
   position: absolute;
   z-index: -1;
-  inset: calc(9px - var(--beam-depth)) 4% auto;
-  height: var(--beam-depth);
-  border: 1px solid #301a0d;
-  border-right: clamp(12px, 2.7vw, 23px) solid #42281a;
-  border-radius: 3px;
-  background: linear-gradient(#d3934e45, transparent 33%, #1b0e08a6),
-              #4e2f1b url('assets/weathered-walnut.jpg') center 12% / 540px auto;
-  box-shadow: inset 0 2px #b58049a6, inset 0 -4px #201006c2, 0 7px 10px #211207b3;
+  inset: 7px .5% auto;
+  aspect-ratio: 3 / 1;
+  transform: translateY(-73%);
+  background: url('assets/tavern-iron-scroll.png') center / contain no-repeat;
+  filter: drop-shadow(0 4px 3px #1b100bd4);
+  pointer-events: none;
+}
+.catalog-lantern {
+  position: absolute;
+  top: clamp(14px, 3.4vw, 28px);
+  left: 95.1%;
+  width: clamp(37px, 8vw, 60px);
+  height: auto;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 3px 5px #261306b8);
+  pointer-events: none;
 }
 .catalog-sign .eyebrow { color: #f0cd77; font-family: Cinzel, Georgia, serif; }
 .catalog-sign h2 {
@@ -647,9 +656,10 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   content: '';
   position: absolute;
   z-index: -1;
-  width: clamp(120px, 27vw, 340px);
+  width: clamp(180px, 42vw, 490px);
   aspect-ratio: 3 / 2;
-  background: url('assets/pinterest-gold-scrollwork.png') center / contain no-repeat;
+  background: url('assets/pinterest-gold-linework.png') center / contain no-repeat;
+  opacity: .62;
   pointer-events: none;
 }
 .pinterest-section::before { top: 10px; left: 10px; }
