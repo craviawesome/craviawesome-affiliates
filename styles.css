@@ -166,15 +166,23 @@ body{background:var(--cream);color:var(--ink)}
 .button:not(.heritage-button):hover { background: var(--cream); }
 .section h2,.about h2{font-size:clamp(40px,5vw,62px);color:var(--blue)}
 .section-intro p{color:var(--green)}
+#collections, #finds {
+  max-width: none;
+  padding-inline: max(clamp(20px, 4vw, 24px), calc((100% - 1172px) / 2));
+}
+#collections {
+  border-bottom: 2px solid #9f7536;
+  background: #0b2d22 url('assets/heritage-scrollwork.jpg') center / 100% 100% no-repeat;
+}
+#finds {
+  background: linear-gradient(#f5e9d175, #f5e9d175),
+              #dcc9a6 url('assets/cottage-fieldstone.jpg') center top / clamp(650px, 85vw, 1050px) auto;
+}
 .collections, .products {
   gap: clamp(10px, 2vw, 22px);
   padding: clamp(12px, 3vw, 30px);
   border: 5px ridge #795037;
   border-radius: 3px;
-  background-color: #3a2419;
-  background-image: linear-gradient(#21110c45, #21110c70), url('assets/weathered-walnut.jpg');
-  background-position: center;
-  background-size: auto, 760px auto;
   box-shadow: inset 0 3px 14px #1a0d09c4, 0 5px 12px #3a221e42;
 }
 .collections {
@@ -182,18 +190,20 @@ body{background:var(--cream);color:var(--ink)}
   grid-template-columns: repeat(3, minmax(0, 1fr));
   padding: 0 var(--board-inset) var(--board-inset);
   margin-top: 26px;
+  border-color: #977344;
+  background: linear-gradient(#0c3123ed, #071f19ec),
+              #12372a url('assets/weathered-walnut.jpg') center / 760px auto;
 }
 .collection-board-heading {
   --rail-pin: radial-gradient(circle at 34% 28%, #d9ae70, #865831 48%, #28160d 69%, transparent 74%);
   grid-column: 1 / -1;
   margin: -5px calc(-1 * var(--board-inset) - 5px) 0;
   padding: 0 clamp(22px, 5vw, 54px) clamp(16px, 3vw, 27px);
-  border: 5px ridge #986c47;
+  border: 5px ridge #987443;
   border-radius: 6px 6px 3px 3px;
   background: var(--rail-pin) left 8px center / 12px 12px no-repeat,
               var(--rail-pin) right 8px center / 12px 12px no-repeat,
-              linear-gradient(#6f402229, #160a05a8),
-              #52301e url('assets/weathered-walnut.jpg') center / 760px auto;
+              linear-gradient(#173d2a, #09271e 70%, #0c3023);
   box-shadow: inset 0 0 0 1px #d3a06b69, 0 5px 7px #150a06a6;
   text-align: center;
   text-shadow: 0 1px 2px #1c0e06, 0 -1px #2a1408;
@@ -205,8 +215,7 @@ body{background:var(--cream);color:var(--ink)}
   padding: 6px clamp(14px, 4vw, 38px) 8px;
   border: 4px ridge #98704b;
   border-radius: 48% 48% 18% 18% / 44% 44% 24% 24%;
-  background: linear-gradient(#75482330, #1a0d08a3),
-              #52301e url('assets/weathered-walnut.jpg') center / 520px auto;
+  background: linear-gradient(#244b36, #0b291f 82%);
   box-shadow: 0 3px 4px #180c07b8, inset 0 0 0 1px #d3a06b69;
   color: #f7d890;
   font: 400 clamp(19px, 3.2vw, 30px)/1.15 'Berkshire Swash', 'Cormorant Garamond', Georgia, serif;
@@ -285,26 +294,47 @@ body{background:var(--cream);color:var(--ink)}
 .collection b { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; font-family: Cinzel, Georgia, serif; }
 .collection .manicule { color: inherit; font-size: 20px; letter-spacing: 0; }
 @media (max-width: 680px) {
+  #collections { background-position: left top; background-size: 560px auto; }
   .collections { grid-template-columns: 1fr; }
   .collection { min-height: 172px; }
 }
 .filters button{border-color:var(--blue);color:var(--blue)}.filters button.active,.filters button:hover{background:var(--blue);color:var(--cream)}
-.products { grid-template-columns: minmax(0, 1fr); }
+.products {
+  grid-template-columns: minmax(0, 1fr);
+  background: radial-gradient(ellipse at 47% 24%, #593621, transparent 75%), #3a2419;
+}
 .products:empty { display: none; }
 .product-shelf + .product-shelf {
   padding-top: clamp(14px, 2.6vw, 25px);
   border-top: 9px ridge #805437;
 }
 .product-shelf > h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 20px);
   margin: 0 0 14px;
   color: #ffe5a2;
   font: 600 clamp(18px, 2.6vw, 25px)/1.2 Cinzel, Georgia, serif;
+  text-align: center;
+  text-wrap: balance;
+}
+.product-shelf > h3::before, .product-shelf > h3::after {
+  content: '';
+  flex: 1 0 36px;
+  max-width: 285px;
+  height: clamp(29px, 7vw, 67px);
+  background: url('assets/shelf-folk-art.jpg') left center / 275% auto no-repeat;
+  mask-image: radial-gradient(ellipse closest-side, #000 77%, transparent 100%);
+}
+.product-shelf > h3::after {
+  background-position: right center;
 }
 .product-shelf-items {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-  background: #342116 url('assets/weathered-walnut.jpg') center / 760px auto;
+  background: #3b261c;
   box-shadow: 0 0 0 1px #93664281, 0 4px 4px #1b0e0b7d;
 }
 .product {
@@ -332,8 +362,7 @@ body{background:var(--cream);color:var(--ink)}
   z-index: -1;
   inset: 7px 8px 0;
   clip-path: var(--case-arch);
-  background: radial-gradient(ellipse at 56% 70%, #61433068, #1d120de0 79%),
-              #2b1910 url('assets/weathered-walnut.jpg') center / 450px auto;
+  background: radial-gradient(ellipse at 50% 66%, #493324, #24170f 78%);
   box-shadow: inset 0 0 0 3px #a07246, inset 0 0 0 6px #3a2116,
               inset 0 10px 32px #140b07d9;
 }
