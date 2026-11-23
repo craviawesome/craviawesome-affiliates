@@ -848,9 +848,16 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
 #newsletter-signup :is(.emailoctopus-success-message, .emailoctopus-error-message, .grecaptcha-error) {
   color: #fff0c7;
 }
-#newsletter-signup .mastfoot p { color: var(--scroll-text); }
-#newsletter-signup .mastfoot a {
-  background-color: #fff7e7;
+#newsletter-signup .mastfoot p {
+  border-radius: 4px;
+  background-color: #edc77b;
+  background-blend-mode: multiply;
+  box-shadow: inset 0 0 0 1px #966631, inset 0 2px 0 #fff1b8,
+              inset 0 -3px 4px #8050194d, 0 2px 4px #07160d99;
+}
+#newsletter-signup .mastfoot a:focus-visible {
+  outline: 2px solid #342107;
+  outline-offset: -4px;
 }
 @keyframes newsletter-unroll {
   from { grid-template-rows: 0fr; }
