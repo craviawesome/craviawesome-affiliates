@@ -267,10 +267,10 @@ body{background:var(--cream);color:var(--ink)}
 }
 .collection-kicker {
   display: block;
-  width: clamp(225px, 40vw, 344px);
+  width: clamp(330px, 65vw, 590px);
   max-width: 100%;
   height: auto;
-  margin: clamp(-49px, -5.5vw, -32px) auto 0;
+  margin: clamp(-65px, -6vw, -32px) auto 0;
   filter: drop-shadow(0 4px 4px #180c07b8);
 }
 .collection-board-heading h2 {
