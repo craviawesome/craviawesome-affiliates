@@ -100,14 +100,26 @@ body{background:var(--cream);color:var(--ink)}
   font: 400 clamp(14px, 1.5vw, 16px)/1.7 'Courier New', Courier, monospace;
 }
 .heritage-hero .eyebrow {
+  position: relative;
+  isolation: isolate;
   max-width: min(100%, 490px);
   padding: 11px clamp(18px, 4vw, 35px) 17px;
-  background: url('assets/torn-quest-paper.png') center / 100% 100% no-repeat;
   color: #3d321f;
   font: 400 clamp(19px, 3vw, 27px)/1.15 'Berkshire Swash', Georgia, serif;
   letter-spacing: normal;
   text-wrap: balance;
   filter: drop-shadow(0 3px 4px #0005);
+}
+.heritage-hero .eyebrow::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url('assets/header-parchment.png') center top / 100% 112% no-repeat;
+  clip-path: polygon(0 10%, 4% 4%, 8% 8%, 13% 1%, 19% 5%, 23% 2%, 30% 7%, 36% 3%,
+                     43% 5%, 49% 0, 56% 6%, 62% 2%, 69% 6%, 75% 3%, 83% 8%, 89% 1%,
+                     95% 6%, 100% 3%, 98% 24%, 100% 40%, 98% 63%, 100% 79%, 98% 100%,
+                     2% 100%, 0 81%, 2% 57%, 0 39%, 2% 23%);
 }
 .button.heritage-button {
   position: relative;
@@ -517,13 +529,13 @@ footer{background:var(--blue);color:var(--cream);border-top:3px solid var(--ligh
   content: '';
   position: absolute;
   z-index: -1;
-  inset: calc(5px - var(--beam-depth)) 4% auto;
+  inset: calc(9px - var(--beam-depth)) 4% auto;
   height: var(--beam-depth);
   border: 1px solid #301a0d;
   border-right: clamp(12px, 2.7vw, 23px) solid #42281a;
   border-radius: 3px;
   background: linear-gradient(#d3934e45, transparent 33%, #1b0e08a6),
-              #4e2f1b url('assets/header-walnut.jpg') center / 400px auto;
+              #4e2f1b url('assets/weathered-walnut.jpg') center 12% / 540px auto;
   box-shadow: inset 0 2px #b58049a6, inset 0 -4px #201006c2, 0 7px 10px #211207b3;
 }
 .catalog-sign .eyebrow { color: #f0cd77; font-family: Cinzel, Georgia, serif; }
