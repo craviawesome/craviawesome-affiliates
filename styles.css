@@ -169,8 +169,17 @@ body{background:var(--cream);color:var(--ink)}
 #finds {
   max-width: none;
   padding-inline: max(clamp(20px, 4vw, 24px), calc((100% - 1172px) / 2));
-  background: linear-gradient(#f5e9d175, #f5e9d175),
-              #dcc9a6 url('assets/cottage-fieldstone.jpg') center top / clamp(650px, 85vw, 1050px) auto;
+  background: #9a8065 url('assets/cottage-cobblestone.jpg') center top / clamp(540px, 75vw, 900px) auto;
+}
+#finds :is(.disclosure-inline, .catalog-search label, .product-status) {
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 3px;
+  background: var(--cream);
+}
+#finds .product-status { margin-inline: auto; }
+#finds .filters button:not(.active):not(:hover) {
+  background: var(--cream);
 }
 .collections, .products {
   gap: clamp(10px, 2vw, 22px);
